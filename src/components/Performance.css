@@ -1,0 +1,56 @@
+.border-control{
+    border-style: solid;
+}
+
+.date-font-size{
+    font-size: 0.7em;
+}
+
+.state-danger{
+    color:#fc0000;
+    background-color:#fc9090;
+    font-weight:bold;
+}
+
+.state-warn{
+    color:orange;
+    background-color:#fcd692;
+    font-weight:bold;
+}
+
+.state-ok{
+    color:green;
+    background-color:#96d6bc;
+    font-weight:bold;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+.request-background-PJV{
+    background-color:#b3b1af
+}
+
+.request-background-PCZ{
+    background-color:#7479cc
+}
+
+.request-background-PYN{
+    background-color:#f5be76
+}
+
+.request-topbg-PJV{
+    background-color:#787775
+}
+.request-topbg-PCZ{
+    background-color:#0e038c
+}
+.request-topbg-PYN{
+    background-color:#f29c2c
+}
+
+.data-font-color{
+    color:black;
+    border-color:initial;
+}

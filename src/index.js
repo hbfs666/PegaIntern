@@ -17,6 +17,8 @@ import './App.css'
 import PczPerformance from './components/PczPerformance'
 import Performance from './components/Performance';
 import Request from './components/Request'
+import MainLayout from './components/MainLayout';
+import Combination from './components/Combination';
 
 const pcz ={ 
   data:[
@@ -93,17 +95,27 @@ const router = createBrowserRouter([
     path: "/request/pyn",
     element: <Request data={pyn.data} average = {pyn.average} title='PYN'/>,
   },
+  {
+    path:"/comb",
+    element: <Combination/>
+  }
 
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    
     <div className="App">
+    <MainLayout>
       <header className="App-header">
+      
         <RouterProvider router={router} />
+        
     </header>
+    </MainLayout>
     </div>
+    
   </React.StrictMode>
 );
 

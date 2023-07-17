@@ -29,8 +29,7 @@ const Request = (props) => {
       if (props.average != undefined) setAverage(props.average)
       return () => {}
    },[])
-   
-   
+
    const TableItems = () => {
       return(
          data.map((item, index) => {
@@ -38,7 +37,7 @@ const Request = (props) => {
             if (index % 2 == 0) odd = 'request-background-' + props.title
             return(
          <Row className={`border-control ${odd}`}>
-            <Col>{item[0]}</Col>
+            <Col className="comb-font-size">{item[0]}</Col>
             <Col>{item[1]}</Col> 
             <Col>{item[2]}</Col>
             <Col>{item[3]}</Col> 

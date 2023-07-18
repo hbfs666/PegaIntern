@@ -37,11 +37,11 @@ const Request = (props) => {
             if (index % 2 == 0) odd = 'request-background-' + props.title
             return(
          <Row className={`border-control ${odd}`}>
-            <Col className="comb-font-size">{item[0]}</Col>
-            <Col>{item[1]}</Col> 
-            <Col>{item[2]}</Col>
-            <Col>{item[3]}</Col> 
-            <Col>{item[4]}</Col> 
+            <Col className="dinamic-element responsive-font-size" xs={3}>{item[0]}</Col>
+            <Col xs={2}>{item[1]}</Col> 
+            <Col xs={2}>{item[2]}</Col>
+            <Col xs={2}>{item[3]}</Col> 
+            <Col xs={2}>{item[4]}</Col> 
          </Row>
          )
          })
@@ -50,12 +50,12 @@ const Request = (props) => {
 
    const TableAverage = () => {
       return(
-         <Row className={`border-control request-background-${props.title} bold`}>
-            <Col>{average[0]}</Col>
-            <Col>{average[1]}</Col>
-            <Col>{average[2]}</Col>
-            <Col>{average[3]}</Col>
-            <Col>{average[4]}</Col>
+         <Row className={`dinamic-element responsive-font-size border-control request-background-${props.title} bold`}>
+            <Col xs={3}>{average[0]}</Col>
+            <Col xs={2}>{average[1]}</Col>
+            <Col xs={2}>{average[2]}</Col>
+            <Col xs={2}>{average[3]}</Col>
+            <Col xs={2}>{average[4]}</Col>
          </Row>
          )
    }
@@ -63,12 +63,12 @@ const Request = (props) => {
 
     return(<>
     <Container>
-        <Row className={`border-control request-topbg-${props.title}`}>
-           <Col>{props.title}</Col>
-           <Col>TopCase %</Col> 
-           <Col>MLB %</Col> 
-           <Col>LCD %</Col> 
-           <Col>Other %</Col> 
+        <Row className={`dinamic-element responsive-font-size border-control request-topbg-${props.title}`}>
+           <Col xs={3}>{props.title}</Col>
+           <Col xs={2}>TopCase %</Col> 
+           <Col xs={2}>MLB %</Col> 
+           <Col xs={2}>LCD %</Col> 
+           <Col xs={2}>Other %</Col> 
         </Row>
         <TableItems/>
         <TableAverage/>

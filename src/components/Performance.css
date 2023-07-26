@@ -2,6 +2,11 @@
     border-style: solid;
 }
 
+.wkb-border{
+    border-style: solid;
+    border-color: black;
+}
+
 .date-font-size{
     font-size: 0.7em;
 }
@@ -11,7 +16,7 @@
 }
 
 .smaller{
-    font-size: 0.9em;
+    font-size: 0.5em;
 }
 
 .dinamic-element {
@@ -27,6 +32,22 @@
 @container (width < 450px){
     .responsive-font-size{
         font-size: 0.6em;
+    }
+}
+
+@container (width > 451px){
+    .header-font-size{
+        font-size: 0.9em;
+    }
+}
+
+.wkb-header{
+    font-size: 0.7em;
+}
+
+@container (width < 450px){
+    .header-font-size{
+        font-size: 0.5em;
     }
 }
 

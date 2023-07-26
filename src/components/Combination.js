@@ -64,9 +64,9 @@ const Combination = () => {
     return(<>
     <Container>
         <Row>
-            <Col className="smaller"> <Request data={pcz.data} average = {pcz.average} title="PCZ"/> </Col>
-            <Col className="smaller"> <Request data={pjv.data} average = {pjv.average} title='PJV'/> </Col>
-            <Col className="smaller"> <Request data={pyn.data} average = {pyn.average} title='PYN'/> </Col>
+            <Col className="dinamic-element"> <Request endpoint="/pcz?max=8" title="PCZ"/> </Col>
+            <Col className="dinamic-element"> <Request endpoint="/pjv?max=8" title='PJV'/> </Col>
+            <Col className="dinamic-element"> <Request endpoint="/pyramid?max=8" title='PYN'/> </Col>
         </Row>
     </Container>
     </>)

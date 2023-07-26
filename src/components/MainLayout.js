@@ -13,6 +13,9 @@ function MainLayout(props) {
             <Nav.Link href="/request/pcz">PCZ</Nav.Link>
             <Nav.Link href="/request/pjv">PJV</Nav.Link>
             <Nav.Link href="/request/pyn">PYN</Nav.Link>
+            <Nav.Link href="/performance/pcz">Performance PCZ</Nav.Link>
+            <Nav.Link href="/">Performance PJV</Nav.Link>
+            <Nav.Link href="/Workable">Workable</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

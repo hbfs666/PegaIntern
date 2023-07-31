@@ -12,10 +12,10 @@ function MainLayout(props) {
           <Nav className="me-auto">
             <Nav.Link href="/request/pcz">PCZ</Nav.Link>
             <Nav.Link href="/request/pjv">PJV</Nav.Link>
-            <Nav.Link href="/request/pyn">PYN</Nav.Link>
+            <Nav.Link href="/request/pyr">PYR</Nav.Link>
             <Nav.Link href="/performance/pcz">Performance PCZ</Nav.Link>
             <Nav.Link href="/">Performance PJV</Nav.Link>
-            <Nav.Link href="/Workable">Workable</Nav.Link>
+            <Nav.Link href="/Ramp">Ramp</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

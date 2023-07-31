@@ -42,7 +42,7 @@ const Combination = () => {
       ]
       }
       
-      const pyn = {
+      const pyr = {
         data:[
         ['2023-06-26', '27%', '12%', '29%', '33%'],
         ['2023-06-27', '30%', '19%', '21%', '30%'],
@@ -66,7 +66,7 @@ const Combination = () => {
         <Row>
             <Col className="dinamic-element"> <Request endpoint="/pcz?max=8" title="PCZ"/> </Col>
             <Col className="dinamic-element"> <Request endpoint="/pjv?max=8" title='PJV'/> </Col>
-            <Col className="dinamic-element"> <Request endpoint="/pyramid?max=8" title='PYN'/> </Col>
+            <Col className="dinamic-element"> <Request endpoint="/pyramid?max=8" title='PYR'/> </Col>
         </Row>
     </Container>
     </>)

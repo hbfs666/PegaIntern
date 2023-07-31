@@ -15,7 +15,7 @@ const Performance = (props) => {
 
     useEffect(() => {
         console.log(props)
-        fetch("http://192.168.50.239:3001"+props.endpoint).then(async (response) => {
+        fetch(process.env.REACT_APP_API+props.endpoint).then(async (response) => {
            const fetched = await response.json();
            console.log("response:",fetched)
            totals.plan = 0;

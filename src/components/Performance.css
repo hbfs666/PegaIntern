@@ -35,6 +35,11 @@
     }
 }
 
+.ramp-font-size{
+    font-size: 0.7em;
+}
+
+
 @container (width > 451px){
     .header-font-size{
         font-size: 0.9em;
@@ -83,7 +88,7 @@
     background-color:#7479cc
 }
 
-.request-background-PYN{
+.request-background-PYR{
     background-color:#f5be76
 }
 
@@ -93,11 +98,36 @@
 .request-topbg-PCZ{
     background-color:#0e038c
 }
-.request-topbg-PYN{
+.request-topbg-PYR{
     background-color:#f29c2c
 }
 
 .data-font-color{
     color:black;
     border-color:initial;
+}
+
+.ramp-up{
+    width: 22.98%;
+}
+
+.rightside-title {
+    width: 15.99%;
+}
+
+.gray-block {
+    width: 72.61px !important;
+    max-width: 72.61px !important;
+}
+
+.blue-block{
+    max-width: 55px !important;
+}
+
+.last{
+    width: 107.89px;
+}
+
+.first-row{
+    width: 50.48%
 }

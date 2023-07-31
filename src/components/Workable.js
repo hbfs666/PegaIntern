@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Performance.css'
+
 const Workable = (props) => {
 
    const [data, setData] = useState([
@@ -18,6 +19,33 @@ const Workable = (props) => {
       ['1', '2', '3', '4', '5', '6'],
    ])
 
+   const [total,setTotal] = useState({})
+
+   useEffect(() => {
+      console.log(props)
+      fetch(process.env.REACT_APP_API+props.endpoint).then(async (response) => {
+         const fetched = await response.json();
+         console.log("response:",fetched)
+         fetched.map((item, index) => {
+          
+          // get totals before aveerage is calculated
+       })
+       setData(fetched)
+       setTotal(total)
+   })
+      return () => {}
+   },[])
+
+   const TablePretest = () => {
+      return(
+         data.map((item,index) => {
+            return(
+               <Col className ='border-control'>{item.pretest}</Col>
+            )
+         }
+      )
+   )}
+
    return(<>
    <Container>
       <Row>
@@ -32,12 +60,7 @@ const Workable = (props) => {
       <Row>
          <Col xs={2} className='border-control'> </Col>
          <Col xs={2} className='border-control'>Subtotal</Col>
-         <Col className='border-control'>58</Col>
-         <Col className='border-control'>55</Col>
-         <Col className='border-control'>0</Col>
-         <Col className='border-control'>0</Col>
-         <Col className='border-control'>0</Col>
-         <Col className='border-control'>0</Col>
+         
       </Row>
       <Row>
          <Col xs={2} className='border-control'>Workable</Col>
@@ -62,13 +85,8 @@ const Workable = (props) => {
             </Row>
          </Col>
          <Col className='border-control'> 
-         <Row>
-            <Col className='border-control'>1</Col>
-            <Col className='border-control'>1</Col>
-            <Col className='border-control'></Col>
-            <Col className='border-control'></Col>
-            <Col className='border-control'></Col>
-            <Col className='border-control'></Col>
+            <Row>
+            <TablePretest/>
             </Row>
             <Row>
             <Col className='border-control'>41</Col>

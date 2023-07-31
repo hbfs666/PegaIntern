@@ -19,6 +19,8 @@ import Performance from './components/Performance';
 import Request from './components/Request'
 import MainLayout from './components/MainLayout';
 import Combination from './components/Combination';
+import Workable from './components/Workable';
+import Ramp from './components/Ramp'
 
 const pcz ={ 
   data:[
@@ -56,7 +58,7 @@ average:[
 ]
 }
 
-const pyn = {
+const pyr = {
   data:[
   ['2023-06-26', '27%', '12%', '29%', '33%'],
   ['2023-06-27', '30%', '19%', '21%', '30%'],
@@ -77,27 +79,31 @@ average:[
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Performance/>,
+    element: <Performance endpoint = "/perf_pjv?max=10&week=W27"/>,
   },
   {
     path: "/performance/pcz",
-    element: <PczPerformance/>,
+    element: <PczPerformance endpoint = "/perf_pcz?max=10&week=W27"/>,
   },
   {
     path: "/request/pcz",
-    element: <Request data={pcz.data} average = {pcz.average} title="PCZ"/>,
+    element: <Request title="PCZ" endpoint ="/pcz?max=11"/>,
   },
   {
     path: "/request/pjv",
-    element: <Request data={pjv.data} average = {pjv.average} title='PJV'/>,
+    element: <Request title='PJV' endpoint ="/pjv?max=11"/>,
   },
   {
-    path: "/request/pyn",
-    element: <Request data={pyn.data} average = {pyn.average} title='PYN'/>,
+    path: "/request/pyr",
+    element: <Request title='PYR' endpoint ="/pyramid?max=8"/>,
   },
   {
     path:"/comb",
     element: <Combination/>
+  },
+  {
+    path:"/ramp",
+    element: <Ramp/>
   }
 
 ]);

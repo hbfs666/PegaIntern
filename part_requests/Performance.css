@@ -1,0 +1,166 @@
+.border-control{
+    border-style: solid;
+}
+
+.wkb-border{
+    border-style: solid;
+    border-color: black;
+}
+
+.date-font-size{
+    font-size: 0.7em;
+}
+
+.comb-font-size{
+    font-size: 0.5em;
+}
+
+.smaller{
+    font-size: 0.5em;
+}
+
+.dinamic-element {
+    container-type: inline-size;
+}
+
+@container (width > 451px){
+    .responsive-font-size{
+        font-size: 0.9em;
+    }
+}
+
+@container (width < 450px){
+    .responsive-font-size{
+        font-size: 0.6em;
+    }
+}
+
+.ramp-font-size{
+    font-size: 0.7em;
+}
+
+
+@container (width > 451px){
+    .header-font-size{
+        font-size: 0.9em;
+    }
+}
+
+.wkb-header{
+    font-size: 0.7em;
+}
+
+@container (width < 450px){
+    .header-font-size{
+        font-size: 0.5em;
+    }
+}
+
+
+
+.state-danger{
+    color:#fc0000;
+    background-color:#fc9090;
+    font-weight:bold;
+}
+
+.state-warn{
+    color:orange;
+    background-color:#fcd692;
+    font-weight:bold;
+}
+
+.state-ok{
+    color:green;
+    background-color:#96d6bc;
+    font-weight:bold;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+.request-background-PJV{
+    background-color:#b3b1af
+}
+
+.request-background-PCZ{
+    background-color:#7479cc
+}
+
+.request-background-PYR{
+    background-color:#f5be76
+}
+
+.request-topbg-PJV{
+    background-color:#787775
+}
+.request-topbg-PCZ{
+    background-color:#0e038c
+}
+.request-topbg-PYR{
+    background-color:#f29c2c
+}
+
+.data-font-color{
+    color:black;
+    border-color:initial;
+}
+
+.ramp-up{
+    width: 22.98%;
+}
+
+.rightside-title {
+    width: 15.99%;
+}
+
+.gray-block {
+    width: 72.61px !important;
+    max-width: 72.61px !important;
+}
+
+.blue-block{
+    max-width: 55px !important;
+}
+
+.last{
+    width: 107.89px;
+}
+
+.first-row{
+    width: 50.48%
+}
+
+.blue-text{
+    color: rgb(88, 158, 238);
+}
+
+.team-bg{
+    background-color: rgb(137, 192, 255);
+    color:white;
+    font-size: 0.7em;
+}
+
+.PRR-bg{
+    background-color: rgb(7, 45, 214);
+    color:white
+}
+
+.PRR-font-size{
+    font-size: 1.5em;
+}
+
+.PRR-name-bg1{
+    background-color: #cef3e4;
+    color:black
+}
+
+.PRR-name-bg2{
+    background-color: #b7d8cb;
+    color:black
+}
+
+.mn-width{
+    width:1px
+}

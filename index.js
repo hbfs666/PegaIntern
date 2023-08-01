@@ -19,7 +19,13 @@ import Performance from './components/Performance';
 import Request from './components/Request'
 import MainLayout from './components/MainLayout';
 import Combination from './components/Combination';
-import Workable from './components/Workable';
+import Ramp from './components/Ramp'
+import PJVTeam from './components/part_requests/PJVTeam';
+import PYRTeam from './components/part_requests/PYRTeam';
+import PCZTeam from './components/part_requests/PCZTeam';
+import All from './components/part_requests/All';
+import PRR from './components/part_requests/PRR';
+
 const pcz ={ 
   data:[
   ['2023-06-26', '29%', '12%', '26%', '33%'],
@@ -56,7 +62,7 @@ average:[
 ]
 }
 
-const pyn = {
+const pyr = {
   data:[
   ['2023-06-26', '27%', '12%', '29%', '33%'],
   ['2023-06-27', '30%', '19%', '21%', '30%'],
@@ -92,17 +98,46 @@ const router = createBrowserRouter([
     element: <Request title='PJV' endpoint ="/pjv?max=11"/>,
   },
   {
-    path: "/request/pyn",
-    element: <Request title='PYN' endpoint ="/pyramid?max=8"/>,
+    path: "/request/pyr",
+    element: <Request title='PYR' endpoint ="/pyramid?max=8"/>,
   },
   {
     path:"/comb",
     element: <Combination/>
   },
   {
-    path:"/Workable",
-    element: <Workable/>
-  }
+    path:"/ramp",
+    element: <Ramp/>
+  },
+  {
+    path:"/PJVTeam",
+    element:<PJVTeam/>
+  },
+  {
+    path:"/PYRTeam",
+    element:<PYRTeam/>
+  },
+  {
+    path:"/PCZTeam",
+    element:<PCZTeam/>
+  },
+  {
+    path:"/PRR",
+    element:<All/>
+  },
+  {
+    path:"/PYRrequest",
+    element:<PRR title='PYR' endpoint='/pyramid?max=8'/>
+  },
+  {
+    path:"/PJVrequest",
+    element:<PRR title='PJV' endpoint='/pjv?max=11'/>
+  },
+  {
+    path:"/PCZrequest",
+    element:<PRR title='PCZ' endpoint='/pcz?max=11'/>
+  },
+
 
 ]);
 
@@ -113,9 +148,7 @@ root.render(
     <div className="App">
     <MainLayout>
       <header className="App-header">
-      
         <RouterProvider router={router} />
-        
     </header>
     </MainLayout>
     </div>

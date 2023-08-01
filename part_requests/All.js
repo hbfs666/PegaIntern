@@ -1,10 +1,12 @@
-import Container from 'react-bootstrap/Container';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Request from './Request';
+import Request from '../Request';
 
-const Combination = () => {
+import PartRequestLayout from './PartRequestLayout';
+
+const All = () => {
 
     const pcz ={ 
         data:[
@@ -62,14 +64,14 @@ const Combination = () => {
       
 
     return(<>
-    <Container>
-        <Row>
-            <Col className="dinamic-element"> <Request endpoint="/pcz?max=8" title="PCZ"/> </Col>
-            <Col className="dinamic-element"> <Request endpoint="/pjv?max=8" title='PJV'/> </Col>
-            <Col className="dinamic-element"> <Request endpoint="/pyramid?max=8" title='PYR'/> </Col>
-        </Row>
-    </Container>
+    <PartRequestLayout>
+            <Row>
+                <Col className="dinamic-element"> <Request endpoint="/pcz?max=8" title="PCZ"/> </Col>
+                <Col className="dinamic-element"> <Request endpoint="/pjv?max=8" title='PJV'/> </Col>
+                <Col className="dinamic-element"> <Request endpoint="/pyramid?max=8" title='PYR'/> </Col>
+            </Row>
+        </PartRequestLayout>
     </>)
 }
 
-export default Combination;
+export default All;

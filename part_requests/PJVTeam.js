@@ -14,19 +14,51 @@ import  Button  from 'react-bootstrap/Button';
 import TeamMemberModal from './TeamMemberModal';
 import PartRequestLayout from './PartRequestLayout';
 
+
 const PJVTeam = (props) => {
     const [option, setOption] = useState('')
+
+    const [page, setPage] = useState(0)
 
     const handleOptionMember = (opt) => {
         setOption(opt)
     }
 
-    const [members,setMembers] = useState([
+    const [members, setMembers] = useState([
         {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
         {name:'Bert Cheng', workid:'LL2345274', schedule: '9pm-6pm'},
         {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
         {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
-        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'}
+        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'Junior Jimenez', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'10', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'11', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'12', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'13', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'14', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'15', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'16', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'17', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'18', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'19', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'20', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'21', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'22', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'23', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'24', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'25', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'26', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'27', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'28', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'29', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'30', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'31', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'32', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'33', workid:'LL2345274', schedule: '9pm-6pm'},
+        {name:'34', workid:'LL2345274', schedule: '9pm-6pm'}
     ])
 
     const [editMember, setEditMember] = useState({name:'', workid:'', schedule: '', index:0})
@@ -68,41 +100,49 @@ const PJVTeam = (props) => {
     }
 
 
-    const displayMembers = () => {
-        return(
-            members.map((member, index) => {
-                return(<Row>
+    const displayMembers = () => 
+        {
+            let quantity = page*10;
+            let lst = members.slice(quantity,Math.min(quantity+10,members.length))
+            return(
+                lst.map((member, index) => {
+                    return(<Row>
+                        <Col className='PRR-name-bg1'>{index+quantity}</Col>
+                        <Col className='PRR-name-bg1'>{member.name}</Col>
+                        <Col className='PRR-name-bg1'>{member.workid}</Col>
+                        <Col className='PRR-name-bg1'>{member.schedule}</Col>
+                        <Col xl={1} className='PRR-name-bg1'>{displayMemberOptions(index)}</Col>
+                    </Row>)
+                })
+            )
 
-                    <Col className='PRR-name-bg1'>{member.name}</Col>
-                    <Col className='PRR-name-bg1'>{member.workid}</Col>
-                    <Col className='PRR-name-bg1'>{member.schedule}</Col>
-                    <Col xl={1} className='PRR-name-bg1'>{displayMemberOptions(index)}</Col>
-                </Row>)
+        }
+
+    const displayPages= () =>
+        {
+            let num = Math.floor(members.length/10)
+            let lst = [...Array(num+1).keys()]
+            console.log("num"+num)
+            console.log("lst"+lst)
+            console.log("page"+page)
+            return(
+            lst.map((pgnum,index) => {
+                return(
+                <Nav.Item>
+                <Nav.Link onClick={()=>setPage(pgnum)}>{pgnum+1}</Nav.Link>
+                </Nav.Item>
+                )
+                
             })
         )
-    }
+        }
 
     return(<>
+        
+    
     <PartRequestLayout>
         <Row>
             <Col>
-                <Row>
-                    <Nav
-                        fill variant = 'tabs'
-                        className='justify-content-center team-bg'
-                        activeKey="/home"
-                    >
-                        <Nav.Item>
-                        <Nav.Link href="/PYRTeam">PYR Team</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link href="PJVTeam">PJV Team</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link href="PCZTeam">PCZ Team</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Row>
                 <Row>
                     <Col className='PRR-font-size'>PJV Team</Col>
                     
@@ -110,43 +150,40 @@ const PJVTeam = (props) => {
                 <Row>
                     <Col>
                         <ToggleButtonGroup type="checkbox" className="mb-2 float-end">
-                            <ToggleButton id="tbg-check-1" variant='warning' value={1} onClick={() => handleOptionMember('edit')}>
+                        <ToggleButton id="tbg-check-1" variant='warning' value={1} onClick={() => handleOptionMember('edit')}>
                                 Edit
                             </ToggleButton>
                             <ToggleButton id="tbg-check-2" variant='primary' value={2} onClick={() => handleOptionMember('add')}>
                                 Add
                             </ToggleButton>
                             <br />
-                            <ToggleButton id="tbg-check-3" variant='danger' value={3} onClick={() => handleOptionMember('Delete')}>
+                            <ToggleButton id="tbg-check-3" variant='danger' value={3} onClick={() => handleOptionMember('delete')}>
                                 Delete
                             </ToggleButton>
                         </ToggleButtonGroup>
                     </Col>
                 </Row>
                 <Row>
-                    <Col className=' PRR-bg'>Name & Last Name</Col>
-                    <Col className=' PRR-bg'>LL</Col>
-                    <Col className=' PRR-bg'>Schedule</Col>
+                    <Col className='PRR-bg'>#</Col>
+                    <Col className='PRR-bg'>Name & Last Name</Col>
+                    <Col className='PRR-bg'>LL</Col>
+                    <Col className='PRR-bg'>Schedule</Col>
                     <Col xl={1} className='PRR-bg'></Col>
                 </Row>
-
                 {displayMembers()}
-
                 <br></br>
                 <Row>
                     <Nav
-                        fill variant = 'tabs'
+                        variant = 'tabs'
                         className='justify-content-center team-bg'
                         activeKey="/home"
                     >
                         <Nav.Item>
-                        <Nav.Link href="/PYRTeam">Previous Page</Nav.Link>
+                        <Nav.Link onClick ={()=>setPage((page-1 < 0) ? 0 : page-1)}>Previous Page</Nav.Link>
                         </Nav.Item>
+                        {displayPages()}
                         <Nav.Item>
-                        <Nav.Link href="PJVTeam">12345</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link href="PCZTeam">Next Page</Nav.Link>
+                        <Nav.Link onClick ={()=>setPage((page+1 > Math.floor(members.length/10)) ? page : page+1)}>Next Page</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Row>

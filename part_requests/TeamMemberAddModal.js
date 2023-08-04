@@ -34,7 +34,7 @@ function TeamMemberAddModal(props) {
                 Name
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control type="text" value = {memberData.name} onChange={(event) => setMemberData({...memberData, name:event.target.value})}/>
+                  <Form.Control type="text" value = {memberData.name} onChange={(event) => setMemberData({...memberData, name:event.target.value})}/>
                 </Col>
             </Form.Group>
 
@@ -43,7 +43,7 @@ function TeamMemberAddModal(props) {
                 Last Name
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control type="text"  value = {memberData.last} onChange={(event) => setMemberData({...memberData, last:event.target.value})}/>
+                  <Form.Control type="text"  value = {memberData.last} onChange={(event) => setMemberData({...memberData, last:event.target.value})}/>
                 </Col>
             </Form.Group>
 
@@ -52,7 +52,7 @@ function TeamMemberAddModal(props) {
                 WorkID 
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control type="text"  value = {memberData.workid} onChange={(event) => setMemberData({...memberData, workid:event.target.value})}/>
+                  <Form.Control type="text"  value = {memberData.workid} onChange={(event) => setMemberData({...memberData, workid:event.target.value})}/>
                 </Col>
             </Form.Group>
 
@@ -61,7 +61,7 @@ function TeamMemberAddModal(props) {
                 Schedule
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control type="text"  schedule = {memberData.name} onChange={(event) => setMemberData({...memberData, schedule:event.target.value})}/>
+                  <Form.Control type="text"  schedule = {memberData.name} onChange={(event) => setMemberData({...memberData, schedule:event.target.value})}/>
                 </Col>
             </Form.Group>
 

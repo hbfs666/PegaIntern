@@ -3,9 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Performance.css'
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import PartRequestLayout from './PartRequestLayout';
 
 const Request = (props) => {
@@ -113,11 +110,11 @@ const Request = (props) => {
         <Row>
             <Col>
                 <Row className={`dinamic-element header-font-size border-control request-topbg-${props.title}`}>
-                <Col xs={3}>{props.title}</Col>
-                <Col xs={2}>TopCase%</Col> 
-                <Col xs={2}>MLB%</Col> 
-                <Col xs={2}>LCD%</Col> 
-                <Col xs={2}>Other%</Col> 
+                  <Col xs={3}>{props.title}</Col>
+                  <Col xs={2}>TopCase%</Col> 
+                  <Col xs={2}>MLB%</Col> 
+                  <Col xs={2}>LCD%</Col> 
+                  <Col xs={2}>Other%</Col> 
                 </Row>
                 <TableItems/>
                 <TableAverage/>

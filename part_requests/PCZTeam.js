@@ -3,9 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Performance.css'
 import {useState, useEffect} from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Nav from 'react-bootstrap/Nav';
@@ -13,6 +10,8 @@ import  Button  from 'react-bootstrap/Button';
 
 import TeamMemberModal from './TeamMemberModal';
 import PartRequestLayout from './PartRequestLayout';
+
+import {useLocation} from "react-router-dom"
 
 const PCZTeam = (props) => {
 
@@ -25,6 +24,10 @@ const PCZTeam = (props) => {
     const [option, setOption] = useState('')
 
     const [page, setPage] = useState(0)
+
+    const [key, setKey] = useState('1')
+
+  
 
     const handleOptionMember = (opt) => {
         setOption(opt)
@@ -68,7 +71,7 @@ const PCZTeam = (props) => {
     ])
 
     const [editMember, setEditMember] = useState({name:'', workid:'', schedule: '', index:0})
-
+    
     const displayMemberOptions = (data) => {
         switch(option) {
             case 'delete': return (<Button variant='danger' onClick={() => handleMemberDelete(data)}>Delete</Button>)
@@ -112,7 +115,8 @@ const PCZTeam = (props) => {
             let lst = members.slice(quantity,Math.min(quantity+10,members.length))
             return(
                 lst.map((member, index) => {
-                    return(<Row>
+                    return(
+                    <Row>
                         <Col className='PRR-name-bg1'>{index+quantity}</Col>
                         <Col className='PRR-name-bg1'>{member.name}</Col>
                         <Col className='PRR-name-bg1'>{member.workid}</Col>
@@ -135,7 +139,7 @@ const PCZTeam = (props) => {
             lst.map((pgnum,index) => {
                 return(
                 <Nav.Item>
-                <Nav.Link onClick={()=>setPage(pgnum)}>{pgnum+1}</Nav.Link>
+                    <Nav.Link eventKey={pgnum+1} onClick={()=>[setPage(pgnum),setKey(pgnum+1)]}>{pgnum+1}</Nav.Link>
                 </Nav.Item>
                 )
                 
@@ -143,29 +147,51 @@ const PCZTeam = (props) => {
         )
         }
 
+        const location = useLocation();
+
+
+
     return(<>
         
     
     <PartRequestLayout>
         <Row>
+            <Nav
+            fill variant = 'tabs'
+            className='justify-content-center team-bg'
+            defaultActiveKey={location.pathname}
+            >
+            <Nav.Item key = "/PYRTeam">
+                <Nav.Link href="/PYRTeam">PYR Team</Nav.Link>
+            </Nav.Item>
+            <Nav.Item key="/PJVTeam">
+                <Nav.Link href="/PJVTeam">PJV Team</Nav.Link>
+            </Nav.Item>
+            <Nav.Item key="/PCZTeam">
+                <Nav.Link href="/PCZTeam">PCZ Team</Nav.Link>
+            </Nav.Item>
+            </Nav>
             <Col>
                 <Row>
-                    <Col className='PRR-font-size'>PCZ Team</Col>
-                    
+                    <Col className='PRR-font-size'>{props.title}</Col>
                 </Row>
                 <Row>
                     <Col>
                         <ToggleButtonGroup type="checkbox" className="mb-2 float-end">
+
                             <ToggleButton id="tbg-check-1" variant='warning' value={1} onClick={() => handleOptionMember('edit')}>
                                 Edit
                             </ToggleButton>
+
                             <ToggleButton id="tbg-check-2" variant='primary' value={2} onClick={() => handleOptionMember('add')}>
                                 Add
                             </ToggleButton>
                             <br />
+
                             <ToggleButton id="tbg-check-3" variant='danger' value={3} onClick={() => handleOptionMember('delete')}>
                                 Delete
                             </ToggleButton>
+
                         </ToggleButtonGroup>
                     </Col>
                 </Row>
@@ -174,7 +200,7 @@ const PCZTeam = (props) => {
                     <Col className='PRR-bg'>Name & Last Name</Col>
                     <Col className='PRR-bg'>LL</Col>
                     <Col className='PRR-bg'>Schedule</Col>
-                    <Col xl={1} className='PRR-bg'></Col>
+                    <Col xl={1} className='PRR-bg'></Col> 
                 </Row>
                 
                 {displayMembers()}
@@ -182,16 +208,19 @@ const PCZTeam = (props) => {
                 <br></br>
                 <Row>
                     <Nav
-                        variant = 'tabs'
+                        variant = 'pills'
                         className='justify-content-center team-bg'
-                        activeKey="/home"
-                    >
+                        activeKey={key}
+                        defaultActiveKey="1">
+
                         <Nav.Item>
-                        <Nav.Link onClick ={()=>setPage((page-1 < 0) ? 0 : page-1)}>Previous Page</Nav.Link>
+                            <Nav.Link onClick ={()=>[setPage((page-1 < 0) ? 0 : page-1),setKey((page<1)?1:page)]}>Previous Page</Nav.Link>
                         </Nav.Item>
+
                         {displayPages()}
+
                         <Nav.Item>
-                        <Nav.Link onClick ={()=>setPage((page+1 > Math.floor(members.length/10)) ? page : page+1)}>Next Page</Nav.Link>
+                            <Nav.Link onClick ={()=>[setPage((page+1 > Math.floor(members.length/10)) ? page : page+1), setKey((page+1>Math.floor(members.length/10))? page+1:page+2)]}>Next Page</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Row>

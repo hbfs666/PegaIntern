@@ -7,11 +7,14 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Nav from 'react-bootstrap/Nav';
 import  Button  from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 import TeamMemberModal from './TeamMemberModal';
 import PartRequestLayout from './PartRequestLayout';
 
-import {useLocation} from "react-router-dom"
+import {useLocation} from "react-router-dom";
+import ExportModal from './ExportModal';
+import Importmodal from './ImportModal';
 
 const PCZTeam = (props) => {
 
@@ -71,18 +74,48 @@ const PCZTeam = (props) => {
     ])
 
     const [editMember, setEditMember] = useState({name:'', workid:'', schedule: '', index:0})
+
+    const deleteList = []
+
     
     const displayMemberOptions = (data) => {
         switch(option) {
-            case 'delete': return (<Button variant='danger' onClick={() => handleMemberDelete(data)}>Delete</Button>)
+            case 'delete': return ( <Form>
+                <Form.Check 
+                  type={'checkbox'}
+                  id={`default-checkbox`}
+                  onClick={(event) => handleMemberDelete(event.target.checked, data)}
+                />
+          </Form>)
             case 'edit': return (<Button variant='success' onClick={() => handleModalEditMember(data)}>Edit</Button>)
         }
         return null;
     }
 
-    const handleMemberDelete = (index) => {
-        members.splice(index,1)
-        setMembers(members)
+    const handleMemberDelete = (checked,index) => {
+        if (checked) {
+            // add to delete list
+            deleteList.push(index+page*10)
+        } else {
+            // remove from delete list
+            const indx = deleteList.indexOf(index+page*10)
+            if (indx>-1){
+            deleteList.splice(indx,1)}
+        }
+    }
+
+    const handleDeleteButton = () => {
+        if (option=='delete')
+        {return (<Button variant= 'success' onClick={() => finalMemberDelete()}>Confirm Delete</Button>)}
+        return null
+    } 
+
+    const finalMemberDelete = () => {
+        deleteList.sort(function(a, b){return b-a})
+        deleteList.map((item) => {
+            members.splice(item,1)
+            setMembers(members)
+        })
         setOption('')
     }
 
@@ -98,14 +131,31 @@ const PCZTeam = (props) => {
         }])
     }
 
+    const handleImportMember = (memberslst) => {
+        console.log(memberslst,'lst')
+        setMembers([
+            ...members,
+            ...memberslst
+        ])
+        setOption('')
+    } 
+
     const handleModalEditMember = (member) => {
-        setEditMember({...members[member], index: member})
+        setEditMember({...members[member+page*10], index: member+page*10})
         setOption('editModal')
     }
 
     const handleModalMemberEdition = (data) => {
-        members[data.index] = {...data.memberData}
+        members[data.index+page*10] = {...data.memberData}
         setMembers(members)
+    }
+
+    const handleCloseExportModal = () => {
+        setOption('')
+    }
+
+    const handleCloseImportModal = () => {
+        setOption('')
     }
 
 
@@ -113,6 +163,11 @@ const PCZTeam = (props) => {
         {
             let quantity = page*10;
             let lst = members.slice(quantity,Math.min(quantity+10,members.length))
+            console.log(lst,'lst')
+            if (lst.length == 0){
+                setPage(page-1)
+                setKey(page)
+            }
             return(
                 lst.map((member, index) => {
                     return(
@@ -125,18 +180,15 @@ const PCZTeam = (props) => {
                     </Row>)
                 })
             )
-
         }
 
     const displayPages= () =>
         {
-            let num = Math.floor(members.length/10)
+            let num = Math.floor((members.length-1)/10)
             let lst = [...Array(num+1).keys()]
-            console.log("num"+num)
-            console.log("lst"+lst)
-            console.log("page"+page)
-            return(
-            lst.map((pgnum,index) => {
+            console.log(page,'page')
+            console.log(key,'key')
+            return(lst.map((pgnum,index) => {
                 return(
                 <Nav.Item>
                     <Nav.Link eventKey={pgnum+1} onClick={()=>[setPage(pgnum),setKey(pgnum+1)]}>{pgnum+1}</Nav.Link>
@@ -144,16 +196,14 @@ const PCZTeam = (props) => {
                 )
                 
             })
-        )
+            )
         }
 
         const location = useLocation();
 
-
+        
 
     return(<>
-        
-    
     <PartRequestLayout>
         <Row>
             <Nav
@@ -161,7 +211,7 @@ const PCZTeam = (props) => {
             className='justify-content-center team-bg'
             defaultActiveKey={location.pathname}
             >
-            <Nav.Item key = "/PYRTeam">
+            <Nav.Item key ="/PYRTeam">
                 <Nav.Link href="/PYRTeam">PYR Team</Nav.Link>
             </Nav.Item>
             <Nav.Item key="/PJVTeam">
@@ -176,19 +226,30 @@ const PCZTeam = (props) => {
                     <Col className='PRR-font-size'>{props.title}</Col>
                 </Row>
                 <Row>
+                    <Col xl={6}></Col>
+                    <Col>
+                        {handleDeleteButton()}
+                    </Col>
                     <Col>
                         <ToggleButtonGroup type="checkbox" className="mb-2 float-end">
+                            
+                            <ToggleButton id="tbg-check-1" variant='info' value={1} onClick={() => handleOptionMember('export')}>
+                                Export
+                            </ToggleButton>
 
-                            <ToggleButton id="tbg-check-1" variant='warning' value={1} onClick={() => handleOptionMember('edit')}>
+                            <ToggleButton id="tbg-check-2" variant='info' value={2} onClick={() => handleOptionMember('import')}>
+                                Import
+                            </ToggleButton>
+
+                            <ToggleButton id="tbg-check-3" variant='warning' value={3} onClick={() => handleOptionMember('edit')}>
                                 Edit
                             </ToggleButton>
 
-                            <ToggleButton id="tbg-check-2" variant='primary' value={2} onClick={() => handleOptionMember('add')}>
+                            <ToggleButton id="tbg-check-4" variant='primary' value={4} onClick={() => handleOptionMember('add')}>
                                 Add
                             </ToggleButton>
                             <br />
-
-                            <ToggleButton id="tbg-check-3" variant='danger' value={3} onClick={() => handleOptionMember('delete')}>
+                            <ToggleButton id="tbg-check-5" variant='danger' value={5} onClick={() => handleOptionMember('delete')}>
                                 Delete
                             </ToggleButton>
 
@@ -220,14 +281,18 @@ const PCZTeam = (props) => {
                         {displayPages()}
 
                         <Nav.Item>
-                            <Nav.Link onClick ={()=>[setPage((page+1 > Math.floor(members.length/10)) ? page : page+1), setKey((page+1>Math.floor(members.length/10))? page+1:page+2)]}>Next Page</Nav.Link>
+                            <Nav.Link onClick ={
+                            ()=>[((option === 'delete')? setOption(''):0), setPage((page+1 > Math.floor((members.length-1)/10)) ? page : page+1), setKey((page+1>Math.floor((members.length-1)/10))? page+1:page+2)]
+                            }>Next Page</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Row>
             </Col>
         </Row>
         {(option === 'add') ? <TeamMemberModal handleModalClose={handleModalClose} handleModalAddMember={handleModalAddMember}/> : null}
-        {(option === 'editModal') ? <TeamMemberModal handleModalClose={handleModalClose} handleModalMemberEdition={handleModalMemberEdition} editMember={editMember}/> : null}
+        {(option === 'editModal') ? <TeamMemberModal handleModalClose={handleModalClose} handleModalMemberEdition={handleModalMemberEdition} editMember={editMember} page={page}/> : null}
+        {(option === 'export') ? <ExportModal handleCloseExportModal = {handleCloseExportModal} memberList={members}/> : null}
+        {(option === 'import') ? <Importmodal handleCloseImportModal = {handleCloseImportModal} handleImportMember={handleImportMember}/> : null}
     </PartRequestLayout>
     </>
     )

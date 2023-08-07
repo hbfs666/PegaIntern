@@ -15,7 +15,7 @@ function TeamMemberAddModal(props) {
         schedule:''
     })
 
-  return (
+  return (    
     <Modal
     show={true}
     size="lg"

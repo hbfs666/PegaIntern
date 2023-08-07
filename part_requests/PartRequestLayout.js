@@ -10,11 +10,22 @@ import Nav from 'react-bootstrap/Nav';
 
 const PartRequestLayout = (props) => {
     const location = useLocation();
+
+    const MenuLocator = () => {
+        switch(location.pathname) {
+            case "/PYRTeam": return "/PYRTeam"
+            case "/PJVTeam": return "/PYRTeam"
+            case "/PCZTeam": return "/PYRTeam" 
+        }
+        return location.pathname;
+        
+    }
+
     return(
     <Container>
         <Row>
             <Col xl ={2}>
-                <ListGroup className='menu-font' defaultActiveKey={location.pathname}>
+                <ListGroup className='menu-font' defaultActiveKey={MenuLocator()}>
                     <ListGroup.Item action href="/PRR">
                         All
                     </ListGroup.Item>

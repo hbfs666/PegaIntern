@@ -165,8 +165,10 @@ const PCZTeam = (props) => {
             let lst = members.slice(quantity,Math.min(quantity+10,members.length))
             console.log(lst,'lst')
             if (lst.length == 0){
-                setPage(page-1)
-                setKey(page)
+                if (members.length!=0){
+                    setPage(page-1)
+                    setKey(page)
+                }
             }
             return(
                 lst.map((member, index) => {
@@ -186,15 +188,12 @@ const PCZTeam = (props) => {
         {
             let num = Math.floor((members.length-1)/10)
             let lst = [...Array(num+1).keys()]
-            console.log(page,'page')
-            console.log(key,'key')
             return(lst.map((pgnum,index) => {
                 return(
                 <Nav.Item>
                     <Nav.Link eventKey={pgnum+1} onClick={()=>[setPage(pgnum),setKey(pgnum+1)]}>{pgnum+1}</Nav.Link>
                 </Nav.Item>
                 )
-                
             })
             )
         }

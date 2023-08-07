@@ -51,9 +51,8 @@ function TeamMemberEditModal(props) {
   return (
     <Modal
     show={true}
-    size="lg"
+    size="md"
     backdrop="static"
-    keyboard={false}
   >
       <Modal.Dialog>
         <Modal.Header>
@@ -63,37 +62,37 @@ function TeamMemberEditModal(props) {
         <Modal.Body>
 
             <Form.Group as={Row} controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
+                <Form.Label className='modal-font' column sm="4">
                 Name
                 </Form.Label>
-                <Col sm="10">
+                <Col sm="8">
                 <Form.Control type="text" value = {memberData.name} onChange={(event) => setMemberData({...memberData, name:event.target.value})}/>
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row}  controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
+                <Form.Label className='modal-font' column sm="4">
                 Last Name
                 </Form.Label>
-                <Col sm="10">
+                <Col sm="8">
                 <Form.Control type="text"  value = {memberData.last} onChange={(event) => setMemberData({...memberData, last:event.target.value})}/>
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row}  controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
+                <Form.Label className='modal-font' column sm="4">
                 WorkID 
                 </Form.Label>
-                <Col sm="10">
+                <Col sm="8">
                 <Form.Control type="text"  value = {memberData.workid} onChange={(event) => setMemberData({...memberData, workid:event.target.value})}/>
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row}  controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
+                <Form.Label className='modal-font' column sm="4">
                 Schedule
                 </Form.Label>
-                <Col sm="10">
+                <Col sm="8">
                 <Form.Control type="text"  value = {memberData.schedule} onChange={(event) => setMemberData({...memberData, schedule:event.target.value})}/>
                 </Col>
             </Form.Group>

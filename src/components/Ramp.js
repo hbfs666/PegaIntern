@@ -143,7 +143,7 @@ const Ramp = (props) => {
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>20%</Col>
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>14%</Col>
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>20%</Col>
-                    <Col className='dinamic-element ramp-font-size border blue-block'>39%</Col>
+                    <Col className='dinamic-element ramp-font-size border blue-block blue-text'>39%</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>
@@ -160,7 +160,7 @@ const Ramp = (props) => {
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>80%</Col>
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>86%</Col>
                     <Col className='dinamic-element ramp-font-size border request-background-PJV gray-block'>80%</Col>
-                    <Col className='dinamic-element ramp-font-size border blue-block'>61%</Col>
+                    <Col className='dinamic-element ramp-font-size border blue-block blue-text'>61%</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>
                     <Col className='dinamic-element ramp-font-size border blue-block'>0</Col>

@@ -16,6 +16,11 @@ import {useLocation} from "react-router-dom";
 import ExportModal from './ExportModal';
 import Importmodal from './ImportModal';
 
+// decoration imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+
+
 const PCZTeam = (props) => {
 
     /*
@@ -106,7 +111,7 @@ const PCZTeam = (props) => {
 
     const handleDeleteButton = () => {
         if (option=='delete')
-        {return (<Button variant= 'success' onClick={() => finalMemberDelete()}>Confirm Delete</Button>)}
+        {return (<Button variant= 'success' onClick={() => finalMemberDelete()}>Confirm Delete <FontAwesomeIcon icon={icon({name: 'check', style:'solid'})}/></Button>)}
         return null
     } 
 
@@ -184,19 +189,36 @@ const PCZTeam = (props) => {
             )
         }
 
-    const displayPages= () =>
-        {
-            let num = Math.floor((members.length-1)/10)
-            let lst = [...Array(num+1).keys()]
-            return(lst.map((pgnum,index) => {
-                return(
-                <Nav.Item>
-                    <Nav.Link eventKey={pgnum+1} onClick={()=>[setPage(pgnum),setKey(pgnum+1)]}>{pgnum+1}</Nav.Link>
-                </Nav.Item>
-                )
-            })
-            )
-        }
+        const displayPages = () => {
+            const currentPage = page + 1; 
+            const num = Math.floor((members.length - 1) / 10);
+            const pageNumbers = [...Array(num + 1).keys()];
+        
+            return pageNumbers.map((pgnum, index) => {
+                
+                const difference = Math.abs(currentPage - (pgnum + 1));
+        
+                if (difference < 4) {
+                    return (
+                        <Nav.Item key={`page-${pgnum}`}>
+                            <Nav.Link eventKey={pgnum + 1} onClick={() => [setPage(pgnum), setKey(pgnum + 1)]}>
+                                {pgnum + 1}
+                            </Nav.Link>
+                        </Nav.Item>
+                    );
+                }
+
+                if (index === 0 || index === pageNumbers.length - 1) {
+                    return (
+                        <Nav.Item key={`page-${pgnum}`}>
+                            <Nav.Link disabled>...</Nav.Link>
+                        </Nav.Item>
+                    );
+                }
+        
+                return null; 
+            });
+        };
 
         const location = useLocation();
 
@@ -211,13 +233,13 @@ const PCZTeam = (props) => {
             defaultActiveKey={location.pathname}
             >
             <Nav.Item key ="/PYRTeam">
-                <Nav.Link href="/PYRTeam">PYR Team</Nav.Link>
+                <Nav.Link href="/PYRTeam"> <FontAwesomeIcon icon={icon({name: 'people-group', style:'solid'})}/> PYR Team</Nav.Link>
             </Nav.Item>
             <Nav.Item key="/PJVTeam">
-                <Nav.Link href="/PJVTeam">PJV Team</Nav.Link>
+                <Nav.Link href="/PJVTeam"> <FontAwesomeIcon icon={icon({name: 'people-group', style:'solid'})}/> PJV Team</Nav.Link>
             </Nav.Item>
             <Nav.Item key="/PCZTeam">
-                <Nav.Link href="/PCZTeam">PCZ Team</Nav.Link>
+                <Nav.Link href="/PCZTeam"> <FontAwesomeIcon icon={icon({name: 'people-group', style:'solid'})}/> PCZ Team</Nav.Link>
             </Nav.Item>
             </Nav>
             <Col>
@@ -225,31 +247,31 @@ const PCZTeam = (props) => {
                     <Col className='PRR-font-size'>{props.title}</Col>
                 </Row>
                 <Row>
-                    <Col xl={6}></Col>
-                    <Col>
+                    <Col xl={5}></Col>
+                    <Col xl={2}>
                         {handleDeleteButton()}
                     </Col>
                     <Col>
                         <ToggleButtonGroup type="checkbox" className="mb-2 float-end">
                             
-                            <ToggleButton id="tbg-check-1" variant='info' value={1} onClick={() => handleOptionMember('export')}>
-                                Export
+                            <ToggleButton id="tbg-check-1" variant='info' value={1} onChange={() => handleOptionMember('export')}>
+                                Export <FontAwesomeIcon icon={icon({name: 'file-arrow-down', style:'solid'})}/>
                             </ToggleButton>
 
-                            <ToggleButton id="tbg-check-2" variant='info' value={2} onClick={() => handleOptionMember('import')}>
-                                Import
+                            <ToggleButton id="tbg-check-2" variant='info' value={2} onChange={() => handleOptionMember('import')}>
+                                Import <FontAwesomeIcon icon={icon({name: 'file-arrow-up', style:'solid'})}/>
                             </ToggleButton>
 
-                            <ToggleButton id="tbg-check-3" variant='warning' value={3} onClick={() => handleOptionMember('edit')}>
-                                Edit
+                            <ToggleButton id="tbg-check-3" variant='warning' value={3} onChange={() => handleOptionMember('edit')}>
+                                Edit <FontAwesomeIcon icon={icon({name: 'pen-to-square', style:'solid'})}/>
                             </ToggleButton>
 
-                            <ToggleButton id="tbg-check-4" variant='primary' value={4} onClick={() => handleOptionMember('add')}>
-                                Add
+                            <ToggleButton id="tbg-check-4" variant='primary' value={4} onChange={() => handleOptionMember('add')}>
+                                Add <FontAwesomeIcon icon={icon({name: 'plus', style:'solid'})}/>
                             </ToggleButton>
                             <br />
-                            <ToggleButton id="tbg-check-5" variant='danger' value={5} onClick={() => handleOptionMember('delete')}>
-                                Delete
+                            <ToggleButton id="tbg-check-5" variant='danger' value={5} onChange={() => handleOptionMember('delete')}>
+                                Delete <FontAwesomeIcon icon={icon({name: 'minus', style:'solid'})}/>
                             </ToggleButton>
 
                         </ToggleButtonGroup>
@@ -274,7 +296,11 @@ const PCZTeam = (props) => {
                         defaultActiveKey="1">
 
                         <Nav.Item>
-                            <Nav.Link onClick ={()=>[setPage((page-1 < 0) ? 0 : page-1),setKey((page<1)?1:page)]}>Previous Page</Nav.Link>
+                            <Nav.Link onClick ={()=>[setPage(0),setKey(1)]}><FontAwesomeIcon icon={icon({name: 'backward-fast', style:'solid'})}/> &nbsp;&nbsp;First</Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link onClick ={()=>[setPage((page-1 < 0) ? 0 : page-1),setKey((page<1)?1:page)]}><FontAwesomeIcon icon={icon({name: 'angles-left', style:'solid'})}/> Previous Page</Nav.Link>
                         </Nav.Item>
 
                         {displayPages()}
@@ -282,7 +308,11 @@ const PCZTeam = (props) => {
                         <Nav.Item>
                             <Nav.Link onClick ={
                             ()=>[((option === 'delete')? setOption(''):0), setPage((page+1 > Math.floor((members.length-1)/10)) ? page : page+1), setKey((page+1>Math.floor((members.length-1)/10))? page+1:page+2)]
-                            }>Next Page</Nav.Link>
+                            }>Next Page <FontAwesomeIcon icon={icon({name: 'angles-right', style:'solid'})}/></Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link onClick ={()=>[setPage(Math.floor((members.length-1)/10)),setKey(Math.floor((members.length-1)/10+1))]}>Last&nbsp;&nbsp; <FontAwesomeIcon icon={icon({name: 'forward-fast', style:'solid'})}/></Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Row>

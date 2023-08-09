@@ -85,16 +85,28 @@ const PCZTeam = (props) => {
     
     const displayMemberOptions = (data) => {
         switch(option) {
-            case 'delete': return ( <Form>
-                <Form.Check 
-                  type={'checkbox'}
-                  id={`default-checkbox`}
-                  onClick={(event) => handleMemberDelete(event.target.checked, data)}
-                />
-          </Form>)
-            case 'edit': return (<Button variant='success' onClick={() => handleModalEditMember(data)}>Edit</Button>)
-        }
-        return null;
+            case 'delete': 
+                if (!toggleButtons[0]) {
+                    setOption('')
+                }
+                else{
+                    return ( <Form>
+                    <Form.Check 
+                    type={'checkbox'}
+                    id={`default-checkbox`}
+                    onClick={(event) => handleMemberDelete(event.target.checked, data)}
+                    />
+                    </Form>)
+                }
+            case 'edit': 
+                if (!toggleButtons[1]) {
+                    setOption('')
+                }
+                else{
+                    return (<Button variant='success' onClick={() => handleModalEditMember(data)}>Edit</Button>)
+                }
+                }
+            return null;
     }
 
     const handleMemberDelete = (checked,index) => {
@@ -121,7 +133,7 @@ const PCZTeam = (props) => {
             members.splice(item,1)
             setMembers(members)
         })
-        setOption('')
+        handleModalClose()
     }
 
     const handleModalClose = () => {
@@ -142,7 +154,7 @@ const PCZTeam = (props) => {
             ...members,
             ...memberslst
         ])
-        setOption('')
+        handleModalClose()
     } 
 
     const handleModalEditMember = (member) => {
@@ -222,6 +234,14 @@ const PCZTeam = (props) => {
 
         const location = useLocation();
 
+    const [toggleButtons, setToggleButtons] = useState([false, false]) 
+
+    function handleToggleButtons(data) {
+        toggleButtons[data] = !toggleButtons[data];
+        setToggleButtons(toggleButtons)
+    }
+
+
         
 
     return(<>
@@ -262,7 +282,7 @@ const PCZTeam = (props) => {
                                 Import <FontAwesomeIcon icon={icon({name: 'file-arrow-up', style:'solid'})}/>
                             </ToggleButton>
 
-                            <ToggleButton id="tbg-check-3" variant='warning' value={3} onChange={() => handleOptionMember('edit')}>
+                            <ToggleButton id="tbg-check-3" variant='warning' value={3} onChange={() => [handleToggleButtons(1),handleOptionMember('edit')]}>
                                 Edit <FontAwesomeIcon icon={icon({name: 'pen-to-square', style:'solid'})}/>
                             </ToggleButton>
 
@@ -270,7 +290,7 @@ const PCZTeam = (props) => {
                                 Add <FontAwesomeIcon icon={icon({name: 'plus', style:'solid'})}/>
                             </ToggleButton>
                             <br />
-                            <ToggleButton id="tbg-check-5" variant='danger' value={5} onChange={() => handleOptionMember('delete')}>
+                            <ToggleButton id="tbg-check-5" variant='danger' value={5} onChange={() => [handleToggleButtons(0),handleOptionMember('delete')]}>
                                 Delete <FontAwesomeIcon icon={icon({name: 'minus', style:'solid'})}/>
                             </ToggleButton>
 

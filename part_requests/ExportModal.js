@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 /*
     props:
@@ -34,7 +36,7 @@ function ExportModal(props) {
   >
       <Modal.Dialog>
         <Modal.Header>
-          <Modal.Title>Export Members (CSV)</Modal.Title>
+          <Modal.Title><FontAwesomeIcon icon={icon({name: 'person-arrow-up-from-line', style:'solid'})}/> &nbsp;Export Members (CSV)</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

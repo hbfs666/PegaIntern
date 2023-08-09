@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 
 function TeamMemberEditModal(props) {
@@ -56,7 +58,7 @@ function TeamMemberEditModal(props) {
   >
       <Modal.Dialog>
         <Modal.Header>
-          <Modal.Title>Add Member</Modal.Title>
+          <Modal.Title><FontAwesomeIcon icon={icon({name: 'user-plus', style:'solid'})}/> &nbsp; Add Member</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

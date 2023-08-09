@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 /*
     props:
@@ -13,13 +15,6 @@ import { useEffect, useState } from 'react';
 function ImportModal(props) {
 
    
-    const [memberData, setMemberData] = useState({
-        name:'',
-        last:'',
-        workid:'',
-        schedule:''
-    })
-
     const [cvsData, setCvsData] = useState('')
     
     
@@ -48,7 +43,7 @@ function ImportModal(props) {
     >
         <Modal.Dialog>
             <Modal.Header>
-            <Modal.Title>Import Members (CSV)</Modal.Title>
+            <Modal.Title><FontAwesomeIcon icon={icon({name: 'user-plus', style:'solid'})}/> &nbsp;Import Members (CSV)</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>

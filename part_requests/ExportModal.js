@@ -13,7 +13,8 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
         handleCloseExportModal -> function to close this modal
 */
 function ExportModal(props) {
-
+  
+  const [isCopied, setIsCopied] = useState(false);
    
     const ListToCSV = () => {
         let csv = "";
@@ -26,6 +27,11 @@ function ExportModal(props) {
 
         return csv;
     }
+  
+    const handleCopyToClipboard = async () => {
+        await navigator.clipboard.writeText(ListToCSV());
+        setIsCopied(true);
+  };
 
   return (
     <Modal
@@ -52,7 +58,10 @@ function ExportModal(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={props.handleCloseExportModal}>Ok</Button>
+        <Button variant="primary" onClick={handleCopyToClipboard}>
+          <FontAwesomeIcon icon={icon({ name: 'copy', style: 'solid' })} /> &nbsp;{isCopied ? 'Copied!' : 'Copy'}
+        </Button>
+        <Button variant="primary" onClick={props.handleCloseExportModal}><FontAwesomeIcon icon={icon({name: 'thumbs-up', style:'solid'})}/> &nbsp;Ok</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>

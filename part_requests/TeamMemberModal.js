@@ -102,8 +102,8 @@ function TeamMemberEditModal(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleModalClose}>Cancel</Button>
-          <Button variant="primary" onClick={handleSaveButton}>Save</Button>
+          <Button variant="secondary" onClick={props.handleModalClose}><FontAwesomeIcon icon={icon({name: 'xmark', style:'solid'})}/> &nbsp;Cancel</Button>
+          <Button variant="primary" onClick={handleSaveButton}><FontAwesomeIcon icon={icon({name: 'circle-check', style:'regular'})}/> &nbsp;Save</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>

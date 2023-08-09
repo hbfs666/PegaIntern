@@ -60,8 +60,8 @@ function ImportModal(props) {
             </Modal.Body>
 
             <Modal.Footer>
-            <Button variant="secondary" onClick={props.handleCloseImportModal}>Cancel</Button>
-            <Button variant="primary" onClick={() => props.handleImportMember(CSVtoList(cvsData))}>Submit</Button>
+            <Button variant="secondary" onClick={props.handleCloseImportModal}><FontAwesomeIcon icon={icon({name: 'xmark', style:'solid'})}/> &nbsp;Cancel</Button>
+            <Button variant="primary" onClick={() => props.handleImportMember(CSVtoList(cvsData))}><FontAwesomeIcon icon={icon({name: 'circle-check', style:'regular'})}/> &nbsp;Submit</Button>
             </Modal.Footer>
         </Modal.Dialog>
         </Modal>

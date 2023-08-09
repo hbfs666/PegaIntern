@@ -264,7 +264,7 @@ const PCZTeam = (props) => {
             </Nav>
             <Col>
                 <Row>
-                    <Col className='PRR-font-size'>{props.title}</Col>
+                    <Col className='PRR-font-size'><FontAwesomeIcon icon={icon({name: 'file-lines', style:'regular'})}/> &nbsp;{props.title}</Col>
                 </Row>
                 <Row>
                     <Col xl={5}></Col>

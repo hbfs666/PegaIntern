@@ -93,7 +93,7 @@ const SDOA = (props) => {
             label.map((item)=>{
             return(
                 <Row style = {{width:'120px',height:'70px'}}>
-                    <Col className='border-control data-size'>{item}</Col>
+                    <Col className='border-control'>{item}</Col>
                 </Row>
             )
         })
@@ -137,7 +137,7 @@ const SDOA = (props) => {
             weight.map((item,)=>{
             return(
                 <Row>
-                    <Col style={{ height: "70px" }} className='border-control'>{item}</Col>
+                    <Col style={{ height: "70px" }} className='border-control SDOA-text'>{item}</Col>
                 </Row>
             )
         })
@@ -186,7 +186,7 @@ const SDOA = (props) => {
             <Row xl='auto'  >
                 <Col className='data-size'>
                     <Row className='border-control' style = {{width:'120px',height:'54.16px'}}>
-                        <Col className='SDOA-text'>COMMODITY</Col>
+                        <Col >COMMODITY</Col>
                     </Row>
                     <LabelTable/>
                 </Col>

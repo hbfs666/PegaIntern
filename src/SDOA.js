@@ -45,28 +45,54 @@ const SDOA = (props) => {
 
     const [Pname,setPname] = useState(['P09W3','P09W4','P10W1','P10W2','P10W3',"P10W4"])
 
-    const FYtable = () =>{
-        return(
-            FY.map((item,index)=>{
-            return(
-                <Row style ={{width:"507.36px"}} className='border-control'>
-                    <Col >{item[0]}</Col>
-                    <Col>{item[1]}</Col>
-                    <Col>{item[2]}</Col>
-                    <Col>{item[3]}</Col>
-                    <Col>{item[4]}</Col>
-                    <Col>{item[5]}</Col>
-                </Row>
-            )
-        })
-        )
-    }
+    const FYtable = () => {
+        return (
+            FY.map((item, rowIndex) => {
+                return (
+                    <Row style={{ width: "507.36px" }} className='border-control'>
+                        {item.map((value, colIndex) => {
+                            if (value === "N/A") {
+                                return (
+                                    <Col key={colIndex}>
+                                        <div className="invisible-circle">
+                                            {value}
+                                        </div>
+                                    </Col>
+                                );
+                            }
+    
+                            const goalPercentage = parseFloat(goal[rowIndex]);
+                            const itemPercentage = parseFloat(value);
+    
+                            let circleColor = '';
+    
+                            if (itemPercentage <= goalPercentage) {
+                                circleColor = 'green-circle';
+                            } else if (itemPercentage <= goalPercentage * 1.1) {
+                                circleColor = 'yellow-circle';
+                            } else {
+                                circleColor = 'red-circle';
+                            }
+    
+                            return (
+                                <Col key={colIndex}>
+                                    <div className={`${circleColor}`}>
+                                        {value}
+                                    </div>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                );
+            })
+        );
+    };
 
     const LabelTable = () =>{
         return(
             label.map((item,index)=>{
             return(
-                <Row style = {{width:'120px'}}>
+                <Row style = {{width:'120px',height:'34.8px'}}>
                     <Col className='border-control'>{item}</Col>
                 </Row>
             )
@@ -78,7 +104,7 @@ const SDOA = (props) => {
         return(
             goal.map((item,index)=>{
             return(
-                <Row style = {{width:'65px'}}>
+                <Row style = {{width:'65px',height:'34.8px'}}>
                     <Col className='border-control'>{item}</Col>
                 </Row>
             )
@@ -111,29 +137,45 @@ const SDOA = (props) => {
             weight.map((item,index)=>{
             return(
                 <Row>
-                    <Col className='border-control'>{item}</Col>
+                    <Col style={{ height: "34.8px" }} className='border-control'>{item}</Col>
                 </Row>
             )
         })
         )
     }
 
-    const Ptable = () =>{
-        return(
-            P.map((item,index)=>{
-            return(
-                <Row style ={{width:"449.82px"}} className='border-control'>
-                    <Col>{item[0]}</Col>
-                    <Col>{item[1]}</Col>
-                    <Col>{item[2]}</Col>
-                    <Col>{item[3]}</Col>
-                    <Col>{item[4]}</Col>
-                    <Col>{item[5]}</Col>
-                </Row>
-            )
-        })
-        )
-    }
+    const Ptable = () => {
+        return (
+            P.map((item, rowIndex) => {
+                return (
+                    <Row style={{ width: "449.82px" }} className='border-control'>
+                        {item.map((value, colIndex) => {
+                            const goalPercentage = parseFloat(goal[rowIndex]); 
+                            const itemPercentage = parseFloat(value);
+    
+                            let circleColor = ''; 
+    
+                            if (itemPercentage <= goalPercentage) {
+                                circleColor = 'green-circle';
+                            } else if (itemPercentage <= goalPercentage * 1.1) {
+                                circleColor = 'yellow-circle';
+                            } else {
+                                circleColor = 'red-circle';
+                            }
+    
+                            return (
+                                <Col key={colIndex}>
+                                    <div className={`${circleColor}`}>
+                                        {value}
+                                    </div>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                );
+            })
+        );
+    };
 
     return(<>
         <Container fluid>
@@ -198,6 +240,7 @@ const SDOA = (props) => {
                         <Col className='border-control'>6 Week Trend</Col>
                     </Row>
                 </Col>
+                
             </Row>
         </Container>
     </>)

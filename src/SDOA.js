@@ -53,8 +53,8 @@ const SDOA = (props) => {
                         {item.map((value, colIndex) => {
                             if (value === "N/A") {
                                 return (
-                                    <Col key={colIndex}>
-                                        <div className="invisible-circle">
+                                    <Col key={colIndex} style = {{height:'65.2px'}}>
+                                        <div className="invisible-circle data-size">
                                             {value}
                                         </div>
                                     </Col>
@@ -76,7 +76,7 @@ const SDOA = (props) => {
     
                             return (
                                 <Col key={colIndex}>
-                                    <div className={`${circleColor}`}>
+                                    <div className={`data-size ${circleColor}`}>
                                         {value}
                                     </div>
                                 </Col>
@@ -90,10 +90,10 @@ const SDOA = (props) => {
 
     const LabelTable = () =>{
         return(
-            label.map((item,index)=>{
+            label.map((item)=>{
             return(
-                <Row style = {{width:'120px',height:'34.8px'}}>
-                    <Col className='border-control'>{item}</Col>
+                <Row style = {{width:'120px',height:'70px'}}>
+                    <Col className='border-control data-size'>{item}</Col>
                 </Row>
             )
         })
@@ -102,10 +102,10 @@ const SDOA = (props) => {
 
     const GoalTable = () =>{
         return(
-            goal.map((item,index)=>{
+            goal.map((item)=>{
             return(
-                <Row style = {{width:'65px',height:'34.8px'}}>
-                    <Col className='border-control'>{item}</Col>
+                <Row style = {{width:'65px',height:'70px'}}>
+                    <Col className='border-control data-size'>{item}</Col>
                 </Row>
             )
         })
@@ -114,9 +114,9 @@ const SDOA = (props) => {
 
     const FYnameTable = () =>{
         return(
-            FYname.map((item,index)=>{
+            FYname.map((item)=>{
             return(
-                    <Col className='border-control'>{item}</Col>
+                    <Col className='border-control SDOA-text'>{item}</Col>
             )
         })
         )
@@ -124,9 +124,9 @@ const SDOA = (props) => {
 
     const PnameTable = () =>{
         return(
-            Pname.map((item,index)=>{
+            Pname.map((item,)=>{
             return(
-                    <Col xl='auto' className='border-control'>{item}</Col>
+                    <Col xl='auto' className='border-control SDOA-text'>{item}</Col>
             )
         })
         )
@@ -134,10 +134,10 @@ const SDOA = (props) => {
 
     const WeightTable = () =>{
         return(
-            weight.map((item,index)=>{
+            weight.map((item,)=>{
             return(
                 <Row>
-                    <Col style={{ height: "34.8px" }} className='border-control'>{item}</Col>
+                    <Col style={{ height: "70px" }} className='border-control'>{item}</Col>
                 </Row>
             )
         })
@@ -164,8 +164,8 @@ const SDOA = (props) => {
                             }
     
                             return (
-                                <Col key={colIndex}>
-                                    <div className={`${circleColor}`}>
+                                <Col key={colIndex} style = {{height:'65.2px'}}>
+                                    <div className={`data-size ${circleColor}`}>
                                         {value}
                                     </div>
                                 </Col>
@@ -180,19 +180,19 @@ const SDOA = (props) => {
     return(<>
         <Container fluid>
             <Row>
-                <Col>SDOA rate by Commodity</Col>
+                <h1>SDOA rate by Commodity</h1>
             </Row>
             <br></br>
-            <Row xl='auto'  className='SDOA-text'>
-                <Col>
+            <Row xl='auto'  >
+                <Col className='data-size'>
                     <Row className='border-control' style = {{width:'120px',height:'54.16px'}}>
-                        <Col>COMMODITY</Col>
+                        <Col className='SDOA-text'>COMMODITY</Col>
                     </Row>
                     <LabelTable/>
                 </Col>
                 <Col>
                     <Row style = {{width:'65px',height:'54.16px'}}>
-                        <Col className='border-control'>GOAL</Col>
+                        <Col className='border-control SDOA-text'>GOAL</Col>
                     </Row>
                     <GoalTable/>
                 </Col>
@@ -200,7 +200,7 @@ const SDOA = (props) => {
                     <Row>
                         <Col>
                             <Row>
-                                <Col className='border-control'>6-Period Trend</Col>
+                                <Col className='border-control SDOA-text'>6-Period Trend</Col>
                             </Row>
                             <Row>
                                 <FYnameTable/>
@@ -213,7 +213,7 @@ const SDOA = (props) => {
                 </Col>
                 <Col> 
                     <Row className='border-control' style = {{height:'54.16px'}}>
-                        <Col>WEIGHT</Col>
+                        <Col className='SDOA-text'>WEIGHT</Col>
                     </Row>
                     <WeightTable/>  
                 </Col>
@@ -221,7 +221,7 @@ const SDOA = (props) => {
                     <Row>
                         <Col>
                             <Row>
-                                <Col className='border-control' style = {{width:'449.82px'}}>6-Week Trend</Col>
+                                <Col className='border-control SDOA-text' style = {{width:'449.82px'}}>6-Week Trend</Col>
                             </Row>
                             <Row>
                                 <PnameTable/>
@@ -237,7 +237,7 @@ const SDOA = (props) => {
                         <Col></Col>
                     </Row>
                     <Row style = {{height:'27.08px'}}> 
-                        <Col className='border-control'>6 Week Trend</Col>
+                        <Col className='border-control SDOA-text'>6 Week Trend</Col>
                     </Row>
                 </Col>
                 
